@@ -1,15 +1,25 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = props => {
-	console.log(props.tasks, 'props.tasks in TodoList');
+const ItemsList = ({ tasks, toggleCompleted, removerItem }) => {
 	return (
-		<ul>
-			{props.tasks.map(task => (
-				<Todo key={task.id} task={task} toggleCompleted={props.toggleCompleted} />
-			))}
-		</ul>
+		<div className="todo-wrapper">
+			<h3>My To-Do List</h3>
+			<hr />
+			<ul>
+				{tasks.length > 0
+					? tasks.map((task) => (
+							<Todo
+								key={task.id}
+								task={task}
+								toggleCompleted={toggleCompleted}
+								removerItem={removerItem}
+							/>
+					  ))
+					: null}
+			</ul>
+		</div>
 	);
 };
 
-export default TodoList;
+export default ItemsList;
